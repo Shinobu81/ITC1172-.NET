@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CommunityAssistSP2018.Models.GrantType>
+@{
+    ViewBag.Title = "Grant Page";
+}
+
+<div class="jumbotron">
+    <h1>Community Assist</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.GrantTypeName)</th>
+        <th>@Html.DisplayNameFor(model => model.GrantTypeDescription)</th>
+        <th>@Html.DisplayNameFor(model => model.GrantTypeDateEntered)</th>
+        <th>@Html.DisplayNameFor(model => model.GrantTypemaximum)</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(model => item.GrantTypeName)</td>
+        <td>@Html.DisplayFor(model => item.GrantTypeDescription)</td>
+        <td>@Html.DisplayFor(model => item.GrantTypeDateEntered)</td>
+        <td>@Html.DisplayFor(model => item.GrantTypemaximum)</td>
+    </tr>
+    }
+</table>

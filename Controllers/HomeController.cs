@@ -11,8 +11,7 @@ namespace CommunityAssistSP2018.Controllers
     {
         public ActionResult Index()
         {
-            CommunityAssist2017Entities db = new CommunityAssist2017Entities();
-            return View(db.GrantTypes.ToList());
+            return View();
         }
 
         public ActionResult About()
@@ -22,11 +21,22 @@ namespace CommunityAssistSP2018.Controllers
             return View();
         }
 
+        public ActionResult Grant()
+        {
+            CommunityAssist2017Entities db = new CommunityAssist2017Entities();
+            return View(db.GrantTypes.ToList());
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Result(Message m)
+        {
+            return View(m);
         }
     }
 }
