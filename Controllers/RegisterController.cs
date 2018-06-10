@@ -19,7 +19,7 @@ namespace CommunityAssistSP2018.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Index([Bind(Include = "lastname, firstname, email, password, Apartment, Street, City, State, Zipcode, Phone")] NewPerson p)
+        public ActionResult Index([Bind(Include = "LastName, FirstName, Email, PlainPassword, Apartment, Street, City, State, Zipcode, Phone")] NewPerson p)
         {
             Message m = new Message();
             int result = db.usp_Register(p.LastName, p.FirstName, p.Email, p.PlainPassword, p.Apartment, p.Street, p.City, p.State, p.Zipcode, p.Phone);
