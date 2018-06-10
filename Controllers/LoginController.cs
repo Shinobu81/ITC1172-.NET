@@ -19,20 +19,20 @@ namespace CommunityAssistSP2018.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Index([Bind(Include = "PersonEmail, Password")]LoginClass lc)
+        public ActionResult Index([Bind(Include = "Email, Password")] LoginClass lc)
         {
-            int entry = db.usp_Login(lc.PersonEmail, lc.Password);
+            int results = db.usp_Login(lc.Email, lc.Password);
             int revKey = 0;
             Message msg = null;
-            if (entry != -1)
+            if (results != -1)
             {
                 var pkey = (from e in db.People
-                            where e.PersonEmail.Equals(lc.PersonEmail)
+                            where e.PersonEmail.Equals(lc.Email)
                             select e.PersonKey).FirstOrDefault();
                 revKey = (int)pkey;
                 Session["PersonKey"] = revKey;
 
-                msg.MessageText = "Welcome, " + lc.PersonEmail;
+                //msg.MessageText = "Welcome" + lc.Email;
             }
             else
             {

@@ -7,7 +7,7 @@ namespace CommunityAssistSP2018.Models
 {
     public class LoginClass
     {
-        public string PersonEmail { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }
