@@ -21,7 +21,17 @@ namespace CommunityAssistSP2018.Models
             : base("name=CommunityAssist2017Entities")
         {
         }
-    
+
+        internal int usp_Register()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal int usp_Register(object lastname, object firstname, object email, object password, object apartmentNumber, object street, object city, object state, object zipcode, object phone)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
