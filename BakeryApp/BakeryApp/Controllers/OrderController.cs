@@ -30,7 +30,7 @@ namespace BakeryApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Index([Bind(Include = "ProductKey,ProductName,Price,Quantity")] Item i)
+        public ActionResult Index([Bind(Include = "ProductKey, ProductName, Price, Quantity, Discount")] Item i)
         {
             var prod = from p in db.Products
                        where p.ProductKey == i.ProductKey
@@ -53,7 +53,7 @@ namespace BakeryApp.Controllers
             Sale sale = new Sale();
             sale.EmployeeKey = 1;
             sale.SaleDate = DateTime.Now;
-            sale.CustomerKey = (int)Session["PersonKey"];
+            sale.CustomerKey = (int)Session["UserKey"];
             db.Sales.Add(sale);
             Order o = (Order)Session["orders"];
             List<Item> saleItems = o.GetItems();
@@ -73,6 +73,8 @@ namespace BakeryApp.Controllers
             db.SaveChanges();
 
             o.CalculateSubTotal();
+            o.CalculateDiscount();
+            o.CalculateSubAfterDiscount();
             o.CalculateTax();
             o.CalculateTotal();
 
