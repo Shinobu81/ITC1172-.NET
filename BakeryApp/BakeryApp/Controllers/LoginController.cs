@@ -9,12 +9,6 @@ namespace BakeryMVC.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
-        /// <summary>
-        /// This controller is really no different
-        /// than the login controller we did in class
-        /// </summary>
-        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -26,12 +20,9 @@ namespace BakeryMVC.Controllers
         {
             BakeryEntities1 db = new BakeryEntities1();
 
-            //use the stored procedure to validate the user
             int result = db.usp_Login(l.userName, l.Password);
-
-            //Initialize the Message object
             Message msg = new Message();
-            //if the login is valid get the personkey for the user
+            result = 0;
             if (result != -1)
             {
                 var userkey = (from p in db.People
@@ -39,23 +30,16 @@ namespace BakeryMVC.Controllers
                                select p.PersonKey).FirstOrDefault();
 
                 int pkey = (int)userkey;
-                //write the personkey to a session
                 Session["UserKey"] = pkey;
-
-                //Create the welcome message
-                msg.MessageText = "Welcome, " + l.userName;
-
+                msg.MessageText = "Welcome back, " + l.userName;
             }
             else
             {
-                //if not valid send the the invalid login message
                 msg.MessageText = "Invalid Login";
             }
-
-            return View("Result", msg);
+                        return View("Result", msg);
         }
-
-        public ActionResult Result(Message m)
+                public ActionResult Result(Message m)
         {
             return View(m);
         }
